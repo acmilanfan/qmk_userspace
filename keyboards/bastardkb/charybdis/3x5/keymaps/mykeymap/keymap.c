@@ -16,8 +16,9 @@
  */
 #include QMK_KEYBOARD_H
 
+#undef TAPPING_TERM
 #define TAPPING_TERM 175
-#define TAPPING_TERM_PER_KEY
+// #define TAPPING_TERM_PER_KEY
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
