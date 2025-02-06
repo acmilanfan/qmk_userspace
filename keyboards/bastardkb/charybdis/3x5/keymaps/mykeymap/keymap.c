@@ -60,9 +60,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define KC_N_FUN LT(LAYER_FUNCTION, KC_N)
 #define KC_H_SYS LT(LAYER_SYSTEM, KC_H)
 #define KC_G_SYS LT(LAYER_SYSTEM, KC_G)
-#define KC_P_MIN MT(K_MINS, KC_G)
-#define KC_M_UND MT(LSFT(K_MINS), KC_M)
-#define KC_DOT_EXC MT(LSFT(K_1), KC_DOT)
+#define KC_P_MIN MT(KC_MINS, KC_G)
+#define KC_M_UND MT(LSFT(KC_MINS), KC_M)
+#define KC_DOT_EXC MT(LSFT(KC_1), KC_DOT)
 #define KC_SLSH_COLON MT(LSFT(KC_SCLN), KC_SLSH)
 #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
