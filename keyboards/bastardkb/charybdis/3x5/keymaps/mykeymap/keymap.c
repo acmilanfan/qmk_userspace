@@ -29,7 +29,6 @@
 #undef COMBO_TERM
 #define COMBO_TERM 15
 
-#ifdef AUTO_SHIFT_ENABLE
 #define MOUSEKEY_DELAY 0 // Delay between pressing a movement key and cursor movement
 #define MOUSEKEY_INTERVAL 10 // Time between cursor movements in milliseconds
 #define MOUSEKEY_MOVE_DELTA	5 // Step size
@@ -40,7 +39,6 @@
 #define MOUSEKEY_WHEEL_DELTA 50 // Wheel movement step size
 #define MOUSEKEY_WHEEL_MAX_SPEED 8 // Maximum number of scroll steps per scroll action
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100 // Time until maximum scroll speed is reached
-#endif // AUTO_SHIFT_ENABLE
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
