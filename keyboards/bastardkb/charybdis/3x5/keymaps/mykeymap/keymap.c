@@ -291,7 +291,7 @@ void rgb_matrix_update_pwm_buffers(void);
 #endif
 
 // Combos
-// const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_P, COMBO_END};
+const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_P, COMBO_END};
 // const uint16_t PROGMEM combo_esc_left[] = {KC_A, KC_S, COMBO_END};
 // const uint16_t PROGMEM combo_esc_right[] = {KC_K, KC_L, COMBO_END};
 // const uint16_t PROGMEM combo_colon[] = {KC_L, KC_SCLN, COMBO_END};
@@ -301,8 +301,8 @@ void rgb_matrix_update_pwm_buffers(void);
 // const uint16_t PROGMEM combo_lang_switch[] = {KC_T, KC_Y, COMBO_END};
 // const uint16_t PROGMEM combo_caps[] = {KC_Z, KC_M, COMBO_END};
 //
-// combo_t key_combos[] = {
-//     [0] = COMBO(combo_esc, KC_ESC),
+combo_t key_combos[] = {
+    [0] = COMBO(combo_esc, KC_ESC),
 //     [1] = COMBO(combo_esc_left, KC_ESC),
 //     [2] = COMBO(combo_esc_right, KC_ESC),
 //     [3] = COMBO(combo_colon, KC_COLN),
@@ -311,4 +311,4 @@ void rgb_matrix_update_pwm_buffers(void);
 //     [6] = COMBO(combo_cut, KC_CUT),
 //     [7] = COMBO(combo_lang_switch, LCTL(KC_RSFT)),
 //     [8] = COMBO(combo_caps, KC_CAPS)
-// };
+};
