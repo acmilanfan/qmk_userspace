@@ -29,6 +29,16 @@
 #undef COMBO_TERM
 #define COMBO_TERM 15
 
+#undef MOUSEKEY_DELAY
+#undef MOUSEKEY_INTERVAL
+#undef MOUSEKEY_MOVE_DELTA
+#undef MOUSEKEY_MAX_SPEED
+#undef MOUSEKEY_TIME_TO_MAX
+#undef MOUSEKEY_WHEEL_DELAY
+#undef MOUSEKEY_WHEEL_INTERVAL
+#undef MOUSEKEY_WHEEL_DELTA
+#undef MOUSEKEY_WHEEL_MAX_SPEED
+#undef MOUSEKEY_WHEEL_TIME_TO_MAX
 #define MOUSEKEY_DELAY 0 // Delay between pressing a movement key and cursor movement
 #define MOUSEKEY_INTERVAL 10 // Time between cursor movements in milliseconds
 #define MOUSEKEY_MOVE_DELTA	5 // Step size
