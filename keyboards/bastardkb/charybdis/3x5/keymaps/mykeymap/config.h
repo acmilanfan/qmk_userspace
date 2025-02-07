@@ -51,7 +51,7 @@
 #define MOUSEKEY_INTERVAL 10 // Time between cursor movements in milliseconds
 #define MOUSEKEY_MOVE_DELTA	5 // Step size
 #define MOUSEKEY_MAX_SPEED 10 // Maximum cursor speed at which acceleration stops
-#define MOUSEKEY_TIME_TO_MAX 350 // Time until maximum cursor speed is reached
+#define MOUSEKEY_TIME_TO_MAX 255 // Time until maximum cursor speed is reached
 #define MOUSEKEY_WHEEL_DELAY 100 // Delay between pressing a wheel key and wheel movement
 #define MOUSEKEY_WHEEL_INTERVAL 100 // Time between wheel movements
 #define MOUSEKEY_WHEEL_DELTA 50 // Wheel movement step size
