@@ -61,9 +61,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define KC_H_SYS LT(LAYER_SYSTEM, KC_H)
 #define KC_G_SYS LT(LAYER_SYSTEM, KC_G)
 #define KC_P_MIN MT(KC_MINS, KC_G)
-#define KC_M_UND MT(LSFT(KC_MINS), KC_M)
-#define KC_DOT_EXC MT(LSFT(KC_1), KC_DOT)
-#define KC_SLSH_COLON MT(LSFT(KC_SCLN), KC_SLSH)
+#define KC_M_UND MT(KC_UNDS, KC_M)
+#define KC_DOT_EXC MT(KC_EXLM, KC_DOT)
+#define KC_SLSH_COLON MT(KC_COLN, KC_SLSH)
 #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
 #ifndef POINTING_DEVICE_ENABLE
@@ -77,7 +77,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                                      \
        KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,       KC_Y,       KC_U,      KC_I,     KC_O,       KC_P,          \
-       KC_A,   KC_S,   KC_D,   KC_F,   KC_G,       KC_H_SYS,   KC_J,      KC_K,     KC_L,       KC_QUOT,       \
+       KC_A,   KC_S,   KC_D,   KC_F,   KC_G,       KC_H_SYS,   KC_J,      KC_K,     KC_L,       KC_SCLN,       \
        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B_MED,   KC_N_FUN,   KC_M_UND,  KC_COMM,  KC_DOT_EXC, KC_SLSH_COLON, \
                       ESC_MED, SPC_NAV, TAB_MOU, ENT_SYM, BSP_NUM
 
@@ -170,7 +170,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_NUMERAL                                                                  \
     KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, _______________DEAD_HALF_ROW_______________, \
-    KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL, ______________HOME_ROW_GASC_R______________, \
+    KC_QUOTE,    KC_4,    KC_5,    KC_6,  KC_EQL, ______________HOME_ROW_GASC_R______________, \
      KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS, _______________DEAD_HALF_ROW_______________, \
                        KC_DOT,    KC_0, KC_MINS, XXXXXXX, _______
 
@@ -291,24 +291,24 @@ void rgb_matrix_update_pwm_buffers(void);
 #endif
 
 // Combos
-const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_esc_left[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM combo_esc_right[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_colon[] = {KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM combo_copy[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM combo_paste[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_cut[] = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_lang_switch[] = {KC_T, KC_Y, COMBO_END};
-const uint16_t PROGMEM combo_caps[] = {KC_Z, KC_M, COMBO_END};
-
-combo_t key_combos[] = {
-    [0] = COMBO(combo_esc, KC_ESC),
-    [1] = COMBO(combo_esc_left, KC_ESC),
-    [2] = COMBO(combo_esc_right, KC_ESC),
-    [3] = COMBO(combo_colon, KC_COLN),
-    [4] = COMBO(combo_copy, KC_COPY),
-    [5] = COMBO(combo_paste, KC_PASTE),
-    [6] = COMBO(combo_cut, KC_CUT),
-    [7] = COMBO(combo_lang_switch, LCTL(KC_RSFT)),
-    [8] = COMBO(combo_caps, KC_CAPS)
-};
+// const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_P, COMBO_END};
+// const uint16_t PROGMEM combo_esc_left[] = {KC_A, KC_S, COMBO_END};
+// const uint16_t PROGMEM combo_esc_right[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM combo_colon[] = {KC_L, KC_SCLN, COMBO_END};
+// const uint16_t PROGMEM combo_copy[] = {KC_U, KC_I, COMBO_END};
+// const uint16_t PROGMEM combo_paste[] = {KC_I, KC_O, COMBO_END};
+// const uint16_t PROGMEM combo_cut[] = {KC_Y, KC_U, COMBO_END};
+// const uint16_t PROGMEM combo_lang_switch[] = {KC_T, KC_Y, COMBO_END};
+// const uint16_t PROGMEM combo_caps[] = {KC_Z, KC_M, COMBO_END};
+//
+// combo_t key_combos[] = {
+//     [0] = COMBO(combo_esc, KC_ESC),
+//     [1] = COMBO(combo_esc_left, KC_ESC),
+//     [2] = COMBO(combo_esc_right, KC_ESC),
+//     [3] = COMBO(combo_colon, KC_COLN),
+//     [4] = COMBO(combo_copy, KC_COPY),
+//     [5] = COMBO(combo_paste, KC_PASTE),
+//     [6] = COMBO(combo_cut, KC_CUT),
+//     [7] = COMBO(combo_lang_switch, LCTL(KC_RSFT)),
+//     [8] = COMBO(combo_caps, KC_CAPS)
+// };
