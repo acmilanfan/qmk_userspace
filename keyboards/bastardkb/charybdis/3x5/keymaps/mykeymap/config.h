@@ -58,3 +58,5 @@
 #define MOUSEKEY_WHEEL_MAX_SPEED 8 // Maximum number of scroll steps per scroll action
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100 // Time until maximum scroll speed is reached
 
+#define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
+#define CHARYBDIS_DEFAULT_DPI_CONFIG_STEP 400
