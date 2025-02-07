@@ -123,7 +123,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * \brief Mouse layer.
  */
 #define LAYOUT_LAYER_MOUSE                                                                     \
-    _______________DEAD_HALF_ROW_______________, KC_AGAIN, KC_PASTE, KC_COPY,  KC_CUT,  KC_UNDO \
+    _______________DEAD_HALF_ROW_______________, KC_AGAIN, KC_PASTE, KC_COPY, KC_CUT, KC_UNDO, \
     ______________HOME_ROW_GASC_L______________, MS_LEFT, MS_DOWN, MS_UP,  MS_RGHT,  KC_F11,   \
     _______________DEAD_HALF_ROW_______________, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR,  MS_BTN3, \
                       XXXXXXX, _______, _______, MS_BTN1, MS_BTN2
