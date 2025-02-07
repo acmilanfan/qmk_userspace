@@ -16,28 +16,6 @@
  */
 #include QMK_KEYBOARD_H
 
-#define TAPPING_TERM 175
-// #define TAPPING_TERM_PER_KEY
-
-#ifdef AUTO_SHIFT_ENABLE
-    #define AUTO_SHIFT_TIMEOUT 175
-    #define NO_AUTO_SHIFT_ALPHA
-    #define AUTO_SHIFT_REPEAT
-#endif // AUTO_SHIFT_ENABLE
-
-#define COMBO_TERM 15
-
-#define MOUSEKEY_DELAY 0 // Delay between pressing a movement key and cursor movement
-#define MOUSEKEY_INTERVAL 10 // Time between cursor movements in milliseconds
-#define MOUSEKEY_MOVE_DELTA	5 // Step size
-#define MOUSEKEY_MAX_SPEED 10 // Maximum cursor speed at which acceleration stops
-#define MOUSEKEY_TIME_TO_MAX 350 // Time until maximum cursor speed is reached
-#define MOUSEKEY_WHEEL_DELAY 100 // Delay between pressing a wheel key and wheel movement
-#define MOUSEKEY_WHEEL_INTERVAL 100 // Time between wheel movements
-#define MOUSEKEY_WHEEL_DELTA 50 // Wheel movement step size
-#define MOUSEKEY_WHEEL_MAX_SPEED 8 // Maximum number of scroll steps per scroll action
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 100 // Time until maximum scroll speed is reached
-
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
