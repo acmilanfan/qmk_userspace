@@ -37,7 +37,7 @@
        //
 
 #define TAPPING_TERM 175
-// #define TAPPING_TERM_PER_KEY
+#define TAPPING_TERM_PER_KEY
 
 #ifdef AUTO_SHIFT_ENABLE
     #define AUTO_SHIFT_TIMEOUT 175
