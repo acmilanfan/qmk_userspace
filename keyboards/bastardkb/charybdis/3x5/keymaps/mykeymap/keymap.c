@@ -316,6 +316,6 @@ combo_t key_combos[] = {
     [4] = COMBO(combo_copy, KC_COPY),
     [5] = COMBO(combo_paste, KC_PASTE),
     [6] = COMBO(combo_cut, KC_CUT),
-    [7] = COMBO(combo_lang_switch, LCTL(KC_LSFT)),
+    [7] = COMBO(combo_lang_switch, RCTL(KC_RSFT)),
     [8] = COMBO(combo_caps, KC_CAPS)
 };
