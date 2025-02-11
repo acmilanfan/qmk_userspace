@@ -142,7 +142,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
  * symmetrical to accomodate the left- and right-hand trackball.
  */
 #define LAYOUT_LAYER_MEDIA                                                                      \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BRIU, KC_BRIU, RGB_MOD, XXXXXXX,   \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BRID, KC_BRIU, RGB_MOD, XXXXXXX,   \
     _______________DEAD_HALF_ROW_______________, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MUTE,   \
     _______________DEAD_HALF_ROW_______________, RGB_RMOD, RGB_MOD, XXXXXXX, XXXXXXX, RGB_TOG, \
                       KC_ESC, KC_ESC, KC_ESC, XXXXXXX, KC_MPLY
