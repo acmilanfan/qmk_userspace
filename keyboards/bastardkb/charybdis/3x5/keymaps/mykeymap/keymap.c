@@ -65,9 +65,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(LAYER_POINTER, KC_Z):
-            return 100;
+            return 120;
         case LT(LAYER_POINTER, KC_SLSH):
-            return 100;
+            return 120;
         default:
             return TAPPING_TERM;
     }
