@@ -130,7 +130,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
  * \brief Mouse layer.
  */
 #define LAYOUT_LAYER_MOUSE                                                                     \
-    _______________DEAD_HALF_ROW_______________, LGUI(KC_LSFT(KC_Z)), LGUI(KC_V), LGUI(KC_C), LGUI(KC_X), LGUI(KC_Z), \
+    _______________DEAD_HALF_ROW_______________, LGUI(LSFT(KC_Z)), LGUI(KC_V), LGUI(KC_C), LGUI(KC_X), LGUI(KC_Z), \
     ______________HOME_ROW_GASC_L______________, MS_LEFT, MS_DOWN, MS_UP,  MS_RGHT,  KC_F11,   \
     _______________DEAD_HALF_ROW_______________, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR,  MS_BTN3, \
                       XXXXXXX, _______, _______, MS_BTN1, MS_BTN2
@@ -163,7 +163,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, LGUI(KC_LSFT(KC_Z)), LGUI(KC_V), LGUI(KC_C), LGUI(KC_X), LGUI(KC_Z), \
+    _______________DEAD_HALF_ROW_______________, LGUI(LSFT(KC_Z)), LGUI(KC_V), LGUI(KC_C), LGUI(KC_X), LGUI(KC_Z), \
     ______________HOME_ROW_GASC_L______________, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_DEL,  \
     _______________DEAD_HALF_ROW_______________, KC_INS, KC_PGDN, KC_PGUP, KC_HOME,  KC_END,  \
                       XXXXXXX, _______, XXXXXXX, KC_ENT, KC_BSPC
