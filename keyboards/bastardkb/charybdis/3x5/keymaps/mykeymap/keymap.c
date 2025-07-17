@@ -20,16 +20,6 @@
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-// OS detection for homerow mods
-#ifndef OS_DETECTION_ENABLE
-#    define OS_DETECTION_ENABLE
-#endif
-
-// Default to non-macOS behavior if OS detection is not available
-#ifndef DETECTED_HOST_OS_MACOS
-#    define DETECTED_HOST_OS_MACOS 0
-#endif
-
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUMERAL,
