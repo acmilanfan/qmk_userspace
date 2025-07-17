@@ -20,6 +20,15 @@
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
+// Custom keycodes for OS-aware operations
+enum custom_keycodes {
+    OS_COPY = SAFE_RANGE,
+    OS_PASTE,
+    OS_CUT,
+    OS_UNDO,
+    OS_REDO
+};
+
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUMERAL,
@@ -130,7 +139,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
  * \brief Mouse layer.
  */
 #define LAYOUT_LAYER_MOUSE                                                                     \
-    _______________DEAD_HALF_ROW_______________, KC_AGAIN, KC_PASTE, KC_COPY, KC_CUT, KC_UNDO, \
+    _______________DEAD_HALF_ROW_______________, OS_REDO, OS_PASTE, OS_COPY, OS_CUT, OS_UNDO, \
     ______________HOME_ROW_GASC_L______________, MS_LEFT, MS_DOWN, MS_UP,  MS_RGHT,  KC_F11,   \
     _______________DEAD_HALF_ROW_______________, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR,  MS_BTN3, \
                       XXXXXXX, _______, _______, MS_BTN1, MS_BTN2
@@ -163,7 +172,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, KC_AGAIN, KC_PASTE, KC_COPY, KC_CUT, KC_UNDO, \
+    _______________DEAD_HALF_ROW_______________, OS_REDO, OS_PASTE, OS_COPY, OS_CUT, OS_UNDO, \
     ______________HOME_ROW_GASC_L______________, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_DEL,  \
     _______________DEAD_HALF_ROW_______________, KC_INS, KC_PGDN, KC_PGUP, KC_HOME,  KC_END,  \
                       XXXXXXX, _______, XXXXXXX, KC_ENT, KC_BSPC
@@ -297,6 +306,56 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void rgb_matrix_update_pwm_buffers(void);
 #endif
 
+// OS-specific clipboard operations
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) return true;
+
+    os_variant_t os = detected_host_os();
+
+    switch (keycode) {
+        case OS_COPY:
+            if (os == OS_MACOS || os == OS_IOS) {
+                tap_code16(LGUI(KC_C));  // Cmd+C on macOS
+            } else {
+                tap_code16(KC_COPY));
+            }
+            return false;
+
+        case OS_PASTE:
+            if (os == OS_MACOS || os == OS_IOS) {
+                tap_code16(LGUI(KC_V));  // Cmd+V on macOS
+            } else {
+                tap_code16(KC_PASTE);
+            }
+            return false;
+
+        case OS_CUT:
+            if (os == OS_MACOS || os == OS_IOS) {
+                tap_code16(LGUI(KC_X));  // Cmd+X on macOS
+            } else {
+                tap_code16(KC_CUT);
+            }
+            return false;
+
+        case OS_UNDO:
+            if (os == OS_MACOS || os == OS_IOS) {
+                tap_code16(LGUI(KC_Z));  // Cmd+Z on macOS
+            } else {
+                tap_code16(KC_UNDO);
+            }
+            return false;
+
+        case OS_REDO:
+            if (os == OS_MACOS || os == OS_IOS) {
+                tap_code16(SGUI(KC_Z));  // Cmd+Shift+Z on macOS
+            } else {
+                tap_code16(KC_REDO);
+            }
+            return false;
+    }
+    return true;
+}
+
 // Combos
 const uint16_t PROGMEM combo_esc[] = {KC_A, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM combo_esc_left[] = {KC_W, KC_E, COMBO_END};
@@ -313,9 +372,9 @@ combo_t key_combos[] = {
     [1] = COMBO(combo_esc_left, KC_ESC),
     [2] = COMBO(combo_esc_right, KC_ESC),
     [3] = COMBO(combo_colon, KC_COLN),
-    [4] = COMBO(combo_copy, KC_COPY),
-    [5] = COMBO(combo_paste, KC_PASTE),
-    [6] = COMBO(combo_cut, KC_CUT),
+    [4] = COMBO(combo_copy, OS_COPY),
+    [5] = COMBO(combo_paste, OS_PASTE),
+    [6] = COMBO(combo_cut, OS_CUT),
     [7] = COMBO(combo_lang_switch, RCTL(KC_RSFT)),
     [8] = COMBO(combo_caps, KC_CAPS)
 };
