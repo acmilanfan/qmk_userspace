@@ -234,6 +234,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #define HOME_ROW_MOD_GASC(...) _HOME_ROW_MOD_GASC(__VA_ARGS__)
 #define HOME_ROW_MOD_MACOS(...) _HOME_ROW_MOD_MACOS(__VA_ARGS__)
 
+// OS-aware wrapper that will be used in the keymap
+#ifdef OS_DETECTION_ENABLE
+#define OS_HOMEROW_MOD(...) \
+    (detected_host_os() == OS_MACOS ? HOME_ROW_MOD_MACOS(__VA_ARGS__) : HOME_ROW_MOD_GASC(__VA_ARGS__))
+#else
+#define OS_HOMEROW_MOD(...) HOME_ROW_MOD_GASC(__VA_ARGS__)
+#endif
+
 /**
  * \brief Add pointer layer keys to a layout.
  *
@@ -260,23 +268,16 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
-// Define separate keymaps for different OS
-const uint16_t PROGMEM keymaps_gasc[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE] = LAYOUT_wrapper(
-    POINTER_MOD(HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE))
-  ),
-};
-
-const uint16_t PROGMEM keymaps_macos[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE] = LAYOUT_wrapper(
-    POINTER_MOD(HOME_ROW_MOD_MACOS(LAYOUT_LAYER_BASE))
-  ),
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#ifdef OS_DETECTION_ENABLE
+  [LAYER_BASE] = LAYOUT_wrapper(
+    POINTER_MOD(detected_host_os() == OS_MACOS ? HOME_ROW_MOD_MACOS(LAYOUT_LAYER_BASE) : HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE))
+  ),
+#else
   [LAYER_BASE] = LAYOUT_wrapper(
     POINTER_MOD(HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE))
   ),
+#endif
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
@@ -287,20 +288,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_MOUSE] = LAYOUT_wrapper(LAYOUT_LAYER_MOUSE),
 };
 // clang-format on
-
-#ifdef OS_DETECTION_ENABLE
-// Override the keycode lookup to use OS-specific homerow mods
-uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
-    if (layer == LAYER_BASE) {
-        if (detected_host_os() == OS_MACOS) {
-            return pgm_read_word(&keymaps_macos[layer][key.row][key.col]);
-        } else {
-            return pgm_read_word(&keymaps_gasc[layer][key.row][key.col]);
-        }
-    }
-    return pgm_read_word(&keymaps[layer][key.row][key.col]);
-}
-#endif
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
