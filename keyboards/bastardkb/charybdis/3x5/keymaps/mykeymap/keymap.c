@@ -20,16 +20,6 @@
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-// OS detection for homerow mods
-#ifndef OS_DETECTION_ENABLE
-#    define OS_DETECTION_ENABLE
-#endif
-
-// Default to non-macOS behavior if OS detection is not available
-#ifndef DETECTED_HOST_OS_MACOS
-#    define DETECTED_HOST_OS_MACOS 0
-#endif
-
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUMERAL,
@@ -205,26 +195,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
                       KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
 
 /**
- * \brief Add Home Row mod to a layout (macOS version).
+ * \brief Add Home Row mod to a layout.
  *
- * For macOS, swap Ctrl and Cmd positions to make Cmd more accessible.
- * Layout: Ctrl, Alt, Shift, Gui on left hand
- *         Gui, Shift, Alt, Ctrl on right hand
- */
-#define _HOME_ROW_MOD_MACOS(                                           \
-    L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
-    L10, L11, L12, L13, L14, R15, R16, R17, R18, R19,                  \
-    ...)                                                               \
-             L00,         L01,         L02,         L03,         L04,  \
-             R05,         R06,         R07,         R08,         R09,  \
-      LCTL_T(L10), LALT_T(L11), LSFT_T(L12), LGUI_T(L13),        L14,  \
-             R15,  LGUI_T(R16), LSFT_T(R17), LALT_T(R18), RCTL_T(R19), \
-      __VA_ARGS__
-
-/**
- * \brief Add Home Row mod to a layout (non-macOS version).
+ * Expects a 10-key per row layout.  Adds support for GASC (Gui, Alt, Shift, Ctl)
+ * home row.  The layout passed in parameter must contain at least 20 keycodes.
  *
- * Standard GASC layout: Gui, Alt, Shift, Ctrl
+ * This is meant to be used with `LAYER_ALPHAS_QWERTY` defined above, eg.:
+ *
+ *     HOME_ROW_MOD_GASC(LAYER_ALPHAS_QWERTY)
  */
 #define _HOME_ROW_MOD_GASC(                                            \
     L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
@@ -235,22 +213,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
       LGUI_T(L10), LALT_T(L11), LSFT_T(L12), LCTL_T(L13),        L14,  \
              R15,  LCTL_T(R16), LSFT_T(R17), LALT_T(R18), RGUI_T(R19), \
       __VA_ARGS__
-
-/**
- * \brief OS-aware Home Row mod macro.
- *
- * Automatically selects the appropriate homerow mod layout based on detected OS.
- */
 #define HOME_ROW_MOD_GASC(...) _HOME_ROW_MOD_GASC(__VA_ARGS__)
-#define HOME_ROW_MOD_MACOS(...) _HOME_ROW_MOD_MACOS(__VA_ARGS__)
-
-// OS-aware wrapper that will be used in the keymap
-#ifdef OS_DETECTION_ENABLE
-#define OS_HOMEROW_MOD(...) \
-    (detected_host_os() == OS_MACOS ? HOME_ROW_MOD_MACOS(__VA_ARGS__) : HOME_ROW_MOD_GASC(__VA_ARGS__))
-#else
-#define OS_HOMEROW_MOD(...) HOME_ROW_MOD_GASC(__VA_ARGS__)
-#endif
 
 /**
  * \brief Add pointer layer keys to a layout.
@@ -279,15 +242,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-#ifdef OS_DETECTION_ENABLE
-  [LAYER_BASE] = LAYOUT_wrapper(
-    POINTER_MOD(detected_host_os() == OS_MACOS ? HOME_ROW_MOD_MACOS(LAYOUT_LAYER_BASE) : HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE))
-  ),
-#else
   [LAYER_BASE] = LAYOUT_wrapper(
     POINTER_MOD(HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE))
   ),
-#endif
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
