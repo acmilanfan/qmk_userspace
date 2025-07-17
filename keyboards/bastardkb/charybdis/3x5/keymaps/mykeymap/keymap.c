@@ -317,7 +317,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (os == OS_MACOS || os == OS_IOS) {
                 tap_code16(LGUI(KC_C));  // Cmd+C on macOS
             } else {
-                tap_code16(KC_COPY));
+                tap_code16(KC_COPY);
             }
             return false;
 
