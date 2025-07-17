@@ -349,7 +349,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (os == OS_MACOS || os == OS_IOS) {
                 tap_code16(SGUI(KC_Z));  // Cmd+Shift+Z on macOS
             } else {
-                tap_code16(KC_REDO);
+                tap_code16(KC_AGAIN);
             }
             return false;
     }
