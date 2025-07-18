@@ -60,6 +60,3 @@
 
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
 #define CHARYBDIS_DEFAULT_DPI_CONFIG_STEP 400
-
-// Enable OS detection for cross-platform clipboard operations
-#define OS_DETECTION_ENABLE
