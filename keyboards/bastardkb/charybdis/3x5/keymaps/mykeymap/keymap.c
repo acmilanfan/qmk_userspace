@@ -266,8 +266,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 #ifdef POINTING_DEVICE_ENABLE
-#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+// OS-specific trackball acceleration multiplier
+// macOS: 1.5x faster, Linux/Windows: default (1.0x)
+#define MACOS_TRACKBALL_MULTIPLIER 1.5
+
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    os_variant_t os = detected_host_os();
+
+    // Apply higher acceleration on macOS
+    if (os == OS_MACOS || os == OS_IOS) {
+        mouse_report.x = (int8_t)(mouse_report.x * MACOS_TRACKBALL_MULTIPLIER);
+        mouse_report.y = (int8_t)(mouse_report.y * MACOS_TRACKBALL_MULTIPLIER);
+    }
+
+#   ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
     if (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD) {
         if (auto_pointer_layer_timer == 0) {
             layer_on(LAYER_POINTER);
@@ -278,9 +290,12 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         }
         auto_pointer_layer_timer = timer_read();
     }
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
     return mouse_report;
 }
 
+#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 void matrix_scan_user(void) {
     if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
         auto_pointer_layer_timer = 0;
