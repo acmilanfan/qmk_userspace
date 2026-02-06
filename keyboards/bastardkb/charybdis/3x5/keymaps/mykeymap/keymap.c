@@ -220,7 +220,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
              L00,         L01,         L02,         L03,         L04,  \
              R05,         R06,         R07,         R08,         R09,  \
       LGUI_T(L10), LALT_T(L11), LSFT_T(L12), LCTL_T(L13),        L14,  \
-             R15,  LCTL_T(R16), LSFT_T(R17), LALT_T(R18), RGUI_T(R19), \
+             R15,  RCTL_T(R16), LSFT_T(R17), LALT_T(R18), RGUI_T(R19), \
       __VA_ARGS__
 #define HOME_ROW_MOD_GASC(...) _HOME_ROW_MOD_GASC(__VA_ARGS__)
 
