@@ -100,7 +100,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ______________HOME_ROW_GASC_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
-#define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI
+#define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_RCTL, KC_LSFT, KC_LALT, KC_LGUI
 
 /*
  * Layers used on the Charybdis Nano.
