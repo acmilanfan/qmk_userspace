@@ -26,7 +26,8 @@ enum custom_keycodes {
     OS_PASTE,
     OS_CUT,
     OS_UNDO,
-    OS_REDO
+    OS_REDO,
+    OS_LANG
 };
 
 enum charybdis_keymap_layers {
@@ -367,6 +368,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(KC_AGAIN);
             }
             return false;
+
+        case OS_LANG:
+            if (os == OS_MACOS || os == OS_IOS) {
+                // Double tap KC_GLOBE (Fn) for macOS input switching
+                tap_code16(KC_GLOBE);
+                tap_code16(KC_GLOBE);
+            } else {
+                tap_code16(RCTL(KC_RSFT));
+            }
+            return false;
     }
     return true;
 }
@@ -390,6 +401,6 @@ combo_t key_combos[] = {
     [4] = COMBO(combo_copy, OS_COPY),
     [5] = COMBO(combo_paste, OS_PASTE),
     [6] = COMBO(combo_cut, OS_CUT),
-    [7] = COMBO(combo_lang_switch, RCTL(KC_RSFT)),
+    [7] = COMBO(combo_lang_switch, OS_LANG),
     [8] = COMBO(combo_caps, KC_CAPS)
 };
