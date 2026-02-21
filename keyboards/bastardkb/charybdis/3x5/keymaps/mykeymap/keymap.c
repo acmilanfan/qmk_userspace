@@ -371,8 +371,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case OS_LANG:
             if (os == OS_MACOS || os == OS_IOS) {
-                // KC_GLOBE (Fn) not available, using Ctrl+Space (default macOS shortcut)
-                tap_code16(C(KC_SPC));
+                // Universal shortcut defined in Hammerspoon: Ctrl+Shift+Space
+                tap_code16(C(S(KC_SPC)));
             } else {
                 tap_code16(RCTL(KC_RSFT));
             }
